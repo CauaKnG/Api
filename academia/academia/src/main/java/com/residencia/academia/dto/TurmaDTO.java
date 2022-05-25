@@ -2,14 +2,18 @@ package com.residencia.academia.dto;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.residencia.academia.entity.Atividade;
 import com.residencia.academia.entity.Instrutor;
 
 public class TurmaDTO {
 	private Integer idTurma;
+	@JsonFormat(pattern = "HH:mm:ss")
 	private Date horarioTurma;
 	private Integer duracaoTurma;
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date dataInicio;
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date dataFim;
 	private Instrutor instrutor;
 	private Atividade atividade;
