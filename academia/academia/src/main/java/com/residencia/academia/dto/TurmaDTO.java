@@ -15,8 +15,8 @@ public class TurmaDTO {
 	private Date dataInicio;
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date dataFim;
-	private Instrutor instrutor;
-	private Atividade atividade;
+	private InstrutorDTO instrutorDTO;
+	private AtividadeDTO atividadeDTO;
 
 	public Integer getIdTurma() {
 		return idTurma;
@@ -58,20 +58,20 @@ public class TurmaDTO {
 		this.dataFim = dataFim;
 	}
 
-	public Instrutor getInstrutor() {
-		return instrutor;
+	public InstrutorDTO getInstrutorDTO() {
+		return instrutorDTO;
 	}
 
-	public void setInstrutor(Instrutor instrutor) {
-		this.instrutor = instrutor;
+	public void setInstrutorDTO(InstrutorDTO instrutorDTO) {
+		this.instrutorDTO = instrutorDTO;
 	}
 
-	public Atividade getAtividade() {
-		return atividade;
+	public AtividadeDTO getAtividadeDTO() {
+		return atividadeDTO;
 	}
 
-	public void setAtividade(Atividade atividade) {
-		this.atividade = atividade;
+	public void setAtividadeDTO(AtividadeDTO atividadeDTO) {
+		this.atividadeDTO = atividadeDTO;
 	}
 
 	@Override

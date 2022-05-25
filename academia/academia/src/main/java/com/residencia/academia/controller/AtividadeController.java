@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.residencia.academia.dto.AtividadeDTO;
 import com.residencia.academia.entity.Atividade;
-import com.residencia.academia.entity.Instrutor;
 import com.residencia.academia.exception.NoSuchElementFoundException;
 import com.residencia.academia.service.AtividadeService;
 
@@ -27,7 +27,7 @@ public class AtividadeController {
 
 	@GetMapping
 	public ResponseEntity<List<Atividade>> findAllAtividade() {
-		List<Atividade>atividadeList = atividadeService.findAllAtividade();
+		List<Atividade> atividadeList = atividadeService.findAllAtividade();
 		return new ResponseEntity<>(atividadeList, HttpStatus.OK);
 	}
 
@@ -40,10 +40,25 @@ public class AtividadeController {
 			return new ResponseEntity<>(atividadeService.findAtividadeById(id), HttpStatus.OK);
 	}
 
+	@GetMapping("/dto/{id}")
+	public ResponseEntity<AtividadeDTO> findAtividadeDTOById(@PathVariable Integer id) {
+		AtividadeDTO atividadeDTO = atividadeService.findAtividadeDTOById(id);
+		if (atividadeDTO.getIdAtividade() == null) {
+			throw new NoSuchElementFoundException("Não foi encontrado Atividade com id " + id);
+		}
+		return new ResponseEntity<>(atividadeDTO, HttpStatus.OK);
+	}
+
 	@PostMapping
 	public ResponseEntity<Atividade> saveAtividade(@RequestBody Atividade atividade) {
 		Atividade novoAtividade = atividadeService.saveAtividade(atividade);
 		return new ResponseEntity<>(novoAtividade, HttpStatus.CREATED);
+	}
+
+	@PostMapping("/dto")
+	public ResponseEntity<AtividadeDTO> saveAtividadeDTO(@RequestBody AtividadeDTO atividadeDTO) {
+		atividadeService.saveAtividadeDTO(atividadeDTO);
+		return new ResponseEntity<>(atividadeDTO, HttpStatus.CREATED);
 	}
 
 	@PutMapping
